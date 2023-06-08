@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api', api);
 
-//html routes?
+//html routes
 //GET route for home page
 app.get('/', (req, res) =>
     res.sendFile(path.join(__dirname, '/public/index.html'))
