@@ -13,9 +13,9 @@ router.use(express.urlencoded({ extended: true }));
 //get route?
 //all notes
 router.get('/notes', (req, res) => {
-    const allNotes = JSON.parse(fs.readFile(path.resolve(__dirname, '..', 'db/db.json')));
+    const allNotes = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', 'db', 'db.json')));
     res.json(allNotes);
-})
+});
 
 //post route?
 router.post('/notes', (req, res) => {
