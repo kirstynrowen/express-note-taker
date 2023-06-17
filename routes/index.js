@@ -1,6 +1,5 @@
 //import express dependency
 const express = require('express');
-
 //import notes router
 const notesRouter = require('./notes');
 
