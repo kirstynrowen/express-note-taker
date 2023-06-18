@@ -1,16 +1,12 @@
 //api routes
 //import dependencies
-const express = require('express');
+// const express = require('express');
 const router = require('express').Router();
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 const fs = require('fs');
 
-//middleware
-router.use(express.json());
-router.use(express.urlencoded({ extended: true }));
-
-//get route?
+//get route
 //all notes
 // /api/notes
 router.get('/', (req, res) => {
@@ -18,11 +14,15 @@ router.get('/', (req, res) => {
     res.json(allNotes);
 });
 
-//post route?
+//post route
 router.post('/', (req, res) => {
     console.log(req.body)
     const { title, text } = req.body;
-    
+    const newNote = {
+        id: uuidv4(),
+        title,
+        text,
+      };
 })
 
 module.exports = router;
