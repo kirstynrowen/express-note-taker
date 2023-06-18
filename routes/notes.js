@@ -41,6 +41,23 @@ router.post('/notes', (req, res) => {
             res.json(newNote);
         });
     });
+});
+
+//delete route
+router.delete('/notes/:id', (req, res) => {
+    const noteId = req.params.id;
+
+    fs.readFile(path.resolve(__dirname, '../db/db.json'), 'utf8', (err, data) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: 'Could not read database file'});
+        }
+       let allNotes = JSON.parse(data);
+       //need to find note index by id
+       //handle error if note not found
+       //splice selected note?
+       //writeFile to delete note
+    })
 })
 
 module.exports = router;
