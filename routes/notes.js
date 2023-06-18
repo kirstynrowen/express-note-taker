@@ -54,10 +54,23 @@ router.delete('/notes/:id', (req, res) => {
         }
        let allNotes = JSON.parse(data);
        //need to find note index by id
+       const noteIndex = allNotes.findIndex((note) => note.id === noteId);
        //handle error if note not found
+       if (noteIndex === -1) {
+        return res.status(404).json({ error: 'Could not find note'});
+       }
        //splice selected note?
+       allNotes.splice(noteIndex, 1);
        //writeFile to delete note
-    })
-})
+       fs.writeFile(path.resolve(__dirname, '../db/db.json'), JSON.stringify(allNotes), (err) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: 'Could not write to database file'});
+        }
+
+        res.json({message: 'Note deleted successfully!'});
+        });
+    });
+});
 
 module.exports = router;
